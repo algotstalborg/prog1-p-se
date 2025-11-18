@@ -8,7 +8,7 @@ def scramble(lista):
         lista.append(temporär_lista[random_val])
         temporär_lista.pop(random_val)
 
-påse = ["test", "test2", "äpple", "test"]
+påse = []
 print(len(påse))
 
 kör = True
@@ -31,7 +31,12 @@ while kör:
         print("")
     elif val.lower() in ("lägg till", "g"):
         if len(påse) <= 10:
-            påse.append(input())
+            lägg_till = input()
+            påse.extend(lägg_till.split())
+            while len(påse) > 10:
+                tappa_val = randint(0, len(påse)-1)
+                print(f"påsen är överfull! du tappade ut {påse[tappa_val]}")
+                påse.pop(tappa_val)
         else:
             print("påsen är full testa ta bort något")
     elif val.lower() in ("sortera", "s"):
@@ -52,7 +57,7 @@ while kör:
                 påse.pop(ta_bort_försök)
         elif ta_bort_val in ("sista", "s"):
             if len(påse) > 0:
-                påse.pop(len(påse))
+                påse.pop(len(påse)-1)
     elif val.lower() == "sök":
         sök = input("vad vill du söka ")
         if sök.lower() in påse:
